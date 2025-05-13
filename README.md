@@ -8,5 +8,5 @@ This is a small evaluation project for Sensor Tower.
 3. `node dist/run.js`
 
 ## Requirements
-npm (10.8.2 used for development)
-Node.js (v20.18.0 used for development)
+- npm (10.8.2 used for development)
+- Node.js (v20.18.0 used for development)
