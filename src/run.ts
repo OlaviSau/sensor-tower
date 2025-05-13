@@ -17,6 +17,8 @@ import { getCompanies } from "./get-companies";
         console.log(`INFO: logged abnormal lines for error discovery`);
     }
 
+    // build a map of companies for keeping track of duplicates and applies transformations
+    // it might be that some transformations are best applied step by step, but it might also not be necessary
     const companies = new Map<string, Company>();
     for (const name of lines) {
         const company = companies.get(name);
@@ -35,12 +37,14 @@ import { getCompanies } from "./get-companies";
 
     const transformations = new Map<string, Company>();
     for (const [name, company] of companies) {
+        // each transformation should be tested individually to make sure we don't have too many false positives
+        // it might be that a single transformation is reliable enough
         const transformation = company
             .currentTransformation
             .toLowerCase()
             .replace(/ (llc|ltd|co|limited|studios?|games)([.,])*/g, "")
             .normalize("NFKD")
-            .replace(/[.,\-:%\s\t]/, "")
+            .replace(/[.,\-:%\s\t]/g, "")
             .trim();
         company.currentTransformation = transformation;
         company.transformations.push(transformation);
