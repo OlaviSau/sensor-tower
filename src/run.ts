@@ -38,7 +38,7 @@ import { getCompanies } from "./get-companies";
         const transformation = company
             .currentTransformation
             .toLowerCase()
-            .replace(/ (llc|ltd|co|limited)([.,])*/g, "")
+            .replace(/ (llc|ltd|co|limited|studio)([.,])*/g, "")
             .trim();
         company.currentTransformation = transformation;
         company.transformations.push(transformation);
