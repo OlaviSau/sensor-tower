@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json",
+    "cache:clean": "rm -rf cache"
   },
   "author": "",
   "license": "ISC",
