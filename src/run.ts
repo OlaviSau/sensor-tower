@@ -39,6 +39,7 @@ import { getCompanies } from "./get-companies";
             .currentTransformation
             .toLowerCase()
             .replace(/ (llc|ltd|co|limited|studio)([.,])*/g, "")
+            .normalize("NFKD")
             .trim();
         company.currentTransformation = transformation;
         company.transformations.push(transformation);
