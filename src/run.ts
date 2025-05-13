@@ -47,23 +47,27 @@ import { getCompanies } from "./get-companies";
         if (duplicate !== undefined) {
             duplicate.duplicates.push(name);
             company.duplicates.push(duplicate.name);
+        } else {
+            transformations.set(transformation, company);
         }
-
-        transformations.set(transformation, company);
     }
 
-    if (process.env.DEBUG) {
-        const printed = new Set<string>();
-        for (const [name, company] of companies) {
-            if (company.duplicates.length && !printed.has(company.name)) {
+    const uniqueCompanies = new Set<string>();
+    for (const [name, company] of companies) {
+        if (!company.duplicates || !company.duplicates.some((duplicate) => uniqueCompanies.has(duplicate))) {
+            uniqueCompanies.add(name);
+            if (process.env.DEBUG && company.duplicates.length) {
                 console.log(name);
                 for (const duplicate of company.duplicates) {
                     console.log(`- ${duplicate}`)
-                    printed.add(duplicate);
                 }
             }
         }
     }
+
+    console.log(
+        `INFO: basic transformations removed ${originalCount - uniqueCompanies.size} companies`
+    );
 })();
 
 interface Company {
