@@ -3,3 +3,6 @@ node_modules
 dist
 cache
 package-lock.json
+log.txt
+companies.duplicate.txt
+companies.unique.txt

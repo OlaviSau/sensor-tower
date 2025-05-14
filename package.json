@@ -1,5 +1,6 @@
 {
   "name": "sensor-tower",
+  "type": "module",
   "version": "0.0.0",
   "main": "index.js",
   "scripts": {
@@ -10,7 +11,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "fastest-levenshtein": "1.0.16",
+    "any-ascii": "0.3.2"
   },
   "devDependencies": {
     "@types/node": "^20.17.46"
